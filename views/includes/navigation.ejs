@@ -1,0 +1,37 @@
+<header class="bg-gray-800 text-white">
+    <nav class="max-w-7xl mx-auto p-4 flex justify-between items-center">
+        <!-- Logo / Branding (Optional) -->
+        <div class="text-2xl font-bold">
+            <a href="/">Luxury Hotel</a>
+        </div>
+
+        <ul class="flex space-x-6">
+            <% if (isAuthenticated) { %>
+                <li class="nav-item">
+                    <a href="/admin/products" class="text-lg <%= path === '/admin/products' ? 'text-blue-500 font-semibold' : 'text-white hover:text-blue-300' %> transition-colors">All Room</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/admin/add-product" class="text-lg <%= path === '/admin/add-product' ? 'text-blue-500 font-semibold' : 'text-white hover:text-blue-300' %> transition-colors">Add Room</a>
+                </li>
+            <% } %>
+        </ul>
+
+        <ul class="flex space-x-6">
+            <% if (!isAuthenticated) { %> 
+                <li class="nav-item">
+                    <a href="/login" class="text-lg <%= path === '/login' ? 'text-blue-500 font-semibold' : 'text-white hover:text-blue-300' %> transition-colors">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/signup" class="text-lg <%= path === '/signup' ? 'text-blue-500 font-semibold' : 'text-white hover:text-blue-300' %> transition-colors">Signup</a>
+                </li>
+            <% } else { %> 
+                <li class="nav-item">
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="text-lg text-white hover:text-red-500 transition-colors">Logout</button>
+                    </form>
+                </li>
+            <% } %> 
+        </ul>
+    </nav>
+</header>

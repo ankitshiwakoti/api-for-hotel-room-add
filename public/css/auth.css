@@ -1,0 +1,24 @@
+.login-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+  }
+  
+  .login-container {
+    background: #fff;
+    padding-left: 20px;
+    border-radius: 8px;
+    
+    width: 50%;
+    display: block;
+    justify-content: center;
+    margin: auto;
+        
+  }
+
+  .login-message{
+    color: #007bff; 
+    text-decoration: none;
+    text-align: center;
+  }

@@ -1,0 +1,44 @@
+<%- include('includes/head.ejs') %>
+
+
+<!-- <link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/auth.css">
+</head> -->
+
+<body class="bg-gray-100 font-sans antialiased">
+    <%- include('includes/navigation.ejs') %>
+    
+    <main class="flex items-center justify-center min-h-screen py-6 px-4">
+        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+            <h1 class="text-3xl font-bold text-center text-blue-500 mb-8">Luxury Hotel</h1>
+
+            <form action="/login" method="POST" class="space-y-6">
+                <div class="form-control">
+                    <label for="email" class="block text-sm font-medium text-gray-700">E-Mail</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your Email"
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <div class="form-control">
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password"
+                           class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+                <button type="submit"
+                        class="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Login
+                </button>
+            </form>
+
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">Not registered? <a class="text-blue-500 hover:underline <%= path === '/signup' ? 'font-semibold' : '' %>"
+                                                                href="/signup">Signup</a></p>
+            </div>
+        </div>
+    </main>
+    
+    <%- include('includes/end.ejs') %>
+</body>

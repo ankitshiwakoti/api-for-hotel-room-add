@@ -1,0 +1,45 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <%- include('includes/navigation.ejs') %>
+
+    <main class="py-10 px-4">
+        <% if (prods.length > 0) { %>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <% for (let product of prods) { %>
+                    <article class="card product-item bg-white shadow-lg rounded-lg overflow-hidden">
+                        <img src="<%= product.imageUrl %>" alt="<%= product.title %>" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h1 class="product__title text-2xl font-bold text-gray-800 mb-2"><%= product.title %></h1>
+                            <h2 class="product__price text-xl text-green-600 font-semibold mb-4">$<%= product.price %></h2>
+                            <p class="product__description text-gray-600 text-base mb-4"><%= product.description %></p>
+
+                            <div class="flex justify-between items-center">
+                                <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn bg-blue-500 border-none text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                    Edit
+                                </a>
+                                <form action="/admin/delete-product" method="POST" class="inline-block">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <input type="hidden" value="<%= product.id %>" name="productId">
+                                    <button class="btn bg-red-500  border-none text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        <% } else { %>
+            <div class="text-center p-6 bg-white rounded-lg shadow-md">
+                <h4 class="text-2xl font-semibold text-gray-700">No Products Found</h4>
+            </div>
+        <% } %>
+    </main>
+
+    <%- include('includes/end.ejs') %>
+</body>
+</html>
